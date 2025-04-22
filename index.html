@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkillSwap</title>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>SkillSwap</h1>
+    <p>Trade Skills. Learn Together.</p>
+    <a href="dashboard.html" class="btn">Get Started</a>
+  </header>
+
+  <script src="main.js"></script>
+  <script>
+    const form = document.getElementById('skillForm');
+    const skillsList = document.getElementById('skillsList');
+  
+    // Submit form
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const skill = document.getElementById('skill').value;
+  
+      const response = await fetch('http://localhost:5000/api/skills', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, skill }),
+      });
+  
+      const data = await response.json();
+      console.log(data);
+  
+      // Clear the form
+      form.reset();
+  
+      // Refresh the list
+      loadSkills();
+    });
+  
+    // Load skills from server
+    async function loadSkills() {
+      const res = await fetch('http://localhost:5000/api/skills');
+      const skills = await res.json();
+  
+      skillsList.innerHTML = '';
+      skills.forEach(({ name, skill }) => {
+        const li = document.createElement('li');
+        li.textContent = `${name} can teach ${skill}`;
+        skillsList.appendChild(li);
+      });
+    }
+  
+    // Load on page load
+    loadSkills();
+  </script>
+  
+</body>
+</html>
