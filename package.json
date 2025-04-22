@@ -4,7 +4,7 @@
   "description": "SkillSwap - Barter-Based Skill Sharing Platform",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
