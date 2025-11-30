@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: skillswap
-    env: node
-    buildCommand: npm install
-    startCommand: npm start
-    envVars:
-      - key: MONGO_URI
-        value: mongodb+srv://admins:admins123@charitha.xkfkvfn.mongodb.net/skillswap?retryWrites=true&w=majority
