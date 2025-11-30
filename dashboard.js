@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById('skillForm');
   const skillList = document.getElementById('skill-list');
   const searchInput = document.getElementById('searchInput');
-  console.log("✅ dashboard.js is running!");
+  console.log(" dashboard.js is running!");
 
   let allSkills = [];
 
   // === Submit new skill ===
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log("📨 Submit event triggered!");
+    console.log(" Submit event triggered!");
   
     const skillCanTeach = document.getElementById('teachSkill').value;
     const skillWantToLearn = document.getElementById('learnSkill').value;
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       contactEmail
     };
   
-    console.log("🚀 Sending:", newSkill);
+    console.log(" Sending:", newSkill);
   
     try {
       const res = await fetch('http://localhost:5000/api/skills', {
@@ -33,14 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   
       if (res.ok) {
-        console.log("✅ Skill posted successfully!");
+        console.log(" Skill posted successfully!");
         form.reset();
         fetchSkills();
       } else {
-        console.error('❌ Failed to submit skill');
+        console.error(' Failed to submit skill');
       }
     } catch (err) {
-      console.error('🔥 Error submitting skill:', err);
+      console.error(' Error submitting skill:', err);
     }
   });
   
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       li.innerHTML = `
         <strong>${item.skillCanTeach}</strong> wants to learn <em>${item.skillWantToLearn}</em><br>
         ${item.about}<br>
-        📬 Contact: <strong>${item.contactEmail || 'Not provided'}</strong>
+         Contact: <strong>${item.contactEmail || 'Not provided'}</strong>
       `;
       skillList.appendChild(li);
     });
@@ -97,3 +97,4 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("dark", e.target.checked);
   });
 });
+
